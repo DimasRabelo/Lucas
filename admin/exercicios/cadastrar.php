@@ -1,62 +1,49 @@
 
 <?php
- 
+
 if (isset($_POST['nomeExercicios'])) {
- 
 
   $idExercicios          = $_POST['idExercicios'];
-
-  $nomeExercicios          = $_POST['nomeExercicios'];
-  $altExercicio            = $_POST['altExercicio']
-  $descricaoExercicios     = $_POST['descricaoExercicios'];
-  $grupoExercicios         = $_POST['grupoExercicios'];
-  $statusExercicios        = $_POST['statusExercicios'];
+  $nomeExercicios        = $_POST['nomeExercicios'];
+  $altExercicio          = $_POST['altExercicio']; // Added missing semicolon
+  $descricaoExercicios   = $_POST['descricaoExercicios'];
+  $grupoExercicios       = $_POST['grupoExercicios'];
+  $statusExercicios      = $_POST['statusExercicios'];
   $likExercicio          = $_POST['likExercicio'];
  
-  //FOTO
-  $arquivo                = $_FILES['fotoExercicio'];
+  // FOTO
+  $arquivo = $_FILES['fotoExercicio'];
  
-  if($arquivo['error']){
-    throw new Exception('Error'.$arquivo['error']);
+  if ($arquivo['error']) {
+    throw new Exception('Error' . $arquivo['error']);
   }
  
-  if(move_uploaded_file($arquivo['tmp_name'], '../img/exercicios/' . $arquivo['name'])){
-      $fotoExercicios = 'exercicios/' . $arquivo['name']; //exercicios/equipe02.png
-  }else{
-    throw new Exception('Erro: Não foi realizar o upload da imagem.');     
+  if (move_uploaded_file($arquivo['tmp_name'], '../img/exercicios/' . $arquivo['name'])) {
+    $fotoExercicios = 'exercicios/' . $arquivo['name']; // exercicios/equipe02.png
+  } else {
+    throw new Exception('Erro: Não foi possível realizar o upload da imagem.');
   }
 
   require_once('class/exercicios.php');
 
-  $exercicios = new ExerciciosClass();
+  $exercicio = new ExerciciosClass(); // Fixed variable name
 
-        
-
-  $exercicio->idExercicios = $idExercicios;
-
-
-  $exercicio->nomeExercicios = $nomeExercicios;
-  $exercicio->altExercicio = $altExercicio;
+  $exercicio->idExercicios        = $idExercicios;
+  $exercicio->nomeExercicios      = $nomeExercicios;
+  $exercicio->altExercicio        = $altExercicio;
   $exercicio->descricaoExercicios = $descricaoExercicios;
-  $exercicio->grupoExercicios = $grupoExercicios;
-  $exercicio->statusExercicios = $statusExercicios;
-  $exercicio->fotoExercicios = $fotoExercicios;
-  $exercicio->likExercicio = $likExercicio;
-  
-  
-  
+  $exercicio->grupoExercicios     = $grupoExercicios;
+  $exercicio->statusExercicios    = $statusExercicios;
+  $exercicio->fotoExercicios      = $fotoExercicios;
+  $exercicio->likExercicio        = $likExercicio;
+
   $exercicio->Cadastrar();
-
-
-
-
-
-
-
 }
- 
- 
+
 ?>
+
+<!-- Your HTML form code here -->
+
 
 
 
