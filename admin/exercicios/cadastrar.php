@@ -3,7 +3,7 @@
 
 if (isset($_POST['nomeExercicios'])) {
 
-  $idExercicios          = $_POST['idExercicios'];
+  
   $nomeExercicios        = $_POST['nomeExercicios'];
   $altExercicio          = $_POST['altExercicio']; // Added missing semicolon
   $descricaoExercicios   = $_POST['descricaoExercicios'];
